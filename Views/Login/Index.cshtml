@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="~/Content/AppJs/jquery-1.12.4.js"></script>
+    <script src="~/Content/AppJs/jquery.min.js"></script>
+    <script src="~/Scripts/module/ajaxRequestHandler.js"></script>
+    <script src="~/Scripts/module/autoCompleteText.js"></script>
+    <script src="~/Scripts/module/jquery.disableAutoFill.min.js"></script>
+    <script src="~/Scripts/module/Common.js"></script>
+    <script src="https://kit.fontawesome.com/a85fbc0d30.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+            background: #f3f3f3;
+            flex-direction: column;
+            margin: 0;
+            background-image: url(../../Content/images/1900857.png);
+        }
+
+        .main {
+            background-color: silver;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: cornflowerblue;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-align: left;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        input[type="email"] {
+            display: block;
+            width: calc(100% - 20px);
+            margin: 0 auto 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .gender-label {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin-bottom: 15px;
+        }
+
+            .gender-label input {
+                width: auto;
+                margin: 0 10px 0 0;
+            }
+
+        #button {
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background-color: cornflowerblue;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        #Btn {
+            width: 100%;
+            background-color: cornflowerblue;
+            border: none;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .error{
+            color:red;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Welcome to EPMS!!!</h1>
+        <h1>Sign in Details</h1>
+        <form id="registrationForm">
+            <label for="firstName">Username:</label>
+            <input type="text" id="firstName">
+            <div id="usernameError" class="error"></div>
+
+
+            <label for="Email">Email:</label>
+            <input type="email" id="email">
+            <div id="emailError" class="error"></div>
+
+
+            <label for="lastName">Password:</label>
+            <input type="password" id="password">
+            <div id="passwordError" class="error"></div>
+
+
+            <input type="button" id="Btn" value="Login">
+        </form>
+        <p>
+            Not Registered ?<a style="color:blue;" id="one">
+                Create Account
+            </a>
+        </p>
+    </div>
+    <script src="~/Scripts/appjs/loginform.js" </script>
+</body>
+</body>
+
+</html>
