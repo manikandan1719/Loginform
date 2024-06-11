@@ -38,16 +38,22 @@ namespace EPMS1.Controllers
                         cmd.Parameters.AddWithValue("@Phone", LoginDetails.Phonenumber);
                         cmd.Parameters.AddWithValue("@RegPassword", hashpassword);
 
-                        cmd.ExecuteNonQuery();
+                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                            if (reader.Read()) {
+                                result = reader["Message"].ToString();
+                            }
+                        }
                     }
                 }
-                result = "User inserted successfully.";
 
-                // Send email if the email address is provided
-                if (!string.IsNullOrEmpty(LoginDetails.Email)) {
-                    var emailResult = SendEmail(LoginDetails.Email, " HI USER Your Email is Verified and Registered Sucessfully,To Login ", "Email Verification");
-                    if (emailResult != "Success") {
-                        result += " However, there was an issue sending the email: " + emailResult;
+                if (result == "User inserted successfully.") {
+                    // Send email if the email address is provided
+                    if (!string.IsNullOrEmpty(LoginDetails.Email)) {
+                        string emailBody = $"<p>Hi {LoginDetails.firstname},</p><p>Your email is verified and registered successfully. To login, please visit our login page.</p><p><a href='https://localhost:44337/Login/index'>Click here to login</a><br><br></p> <p>Regards,<br> Manikandan N</p>";
+                        var emailResult = SendEmail(LoginDetails.Email, emailBody, "Email Verification");
+                        if (emailResult != "Success") {
+                            result += " However, there was an issue sending the email: " + emailResult;
+                        }
                     }
                 }
             }
@@ -67,11 +73,9 @@ namespace EPMS1.Controllers
                 string host = "smtp.gmail.com";
                 int port = 587;
 
-                string loginUrl = "https://localhost:44337/Login/index";
-
                 using (MailMessage mm = new MailMessage(fromEmail, toEmail)) {
                     mm.Subject = subject;
-                    mm.Body = $"{body} <br/><br/> <a href='{loginUrl}'>Click here to login</a>";
+                    mm.Body = body;
                     mm.IsBodyHtml = true;
 
                     SmtpClient smtp = new SmtpClient {
@@ -83,33 +87,18 @@ namespace EPMS1.Controllers
                     };
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; // Ensure TLS 1.2 or higher
 
-                    // Debugging output
-                    Console.WriteLine("SMTP Host: " + host);
-                    Console.WriteLine("SMTP Port: " + port);
-                    Console.WriteLine("From Email: " + fromEmail);
-                    Console.WriteLine("To Email: " + toEmail);
-
                     smtp.Send(mm);
                     result = "Success";
                 }
             }
             catch (SmtpException smtpEx) {
-                Console.WriteLine("SMTP Exception: " + smtpEx.Message);
-                if (smtpEx.InnerException != null) {
-                    Console.WriteLine("Inner Exception: " + smtpEx.InnerException.Message);
-                }
                 result = smtpEx.Message;
             }
             catch (Exception ex) {
-                Console.WriteLine("Exception: " + ex.Message);
-                if (ex.InnerException != null) {
-                    Console.WriteLine("Inner Exception: " + ex.InnerException.Message);
-                }
                 result = ex.Message;
             }
             return result;
         }
-
 
         public class User1
         {

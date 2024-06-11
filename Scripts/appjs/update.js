@@ -1,4 +1,21 @@
 ﻿$(document).ready(function () {
+    // Show the modal
+    //var modal = document.getElementById("otpModal");
+
+    //var span = document.getElementsByClassName("close")[0];
+
+
+    //span.onclick = function () {
+    //    modal.style.display = "none";
+    //}
+
+
+    //window.onclick = function (event) {
+    //    if (event.target == modal) {
+    //        modal.style.display = "none";
+    //    }
+    //}
+
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -19,19 +36,28 @@
     $('#phonenumber').val(getUrlParameter('PhoneNumber'));
     $('#regpass').val(getUrlParameter('UserPassword'));
 
+
     $('#phonenumber').on('input', function () {
         $(this).val($(this).val().replace(/\D/, ''));
     });
 
     $(document).on('click', '#Btn', function () {
-        register();
+        update();
     });
 
-    $(document).on('click', '#two', function () {
-        window.location.href = window.location.origin + "/Login/index";
-    });
+    //$(document).on('click', '#otpVerifyButton', function () {
+    //    var otp = $('#otpInput').val();
+    //    if (otp === '1712') {
+    //        alert('OTP verified!');
+    //        window.location.href = "/Login/index";
+    //    } else {
+    //        alert('OTP invalid!');
 
-    function register() {
+    //    }
+    //});
+
+   
+    function update() {
         var LoginDetails = {
             FirstName: $('#firstName').val(),
             LastName: $('#lastName').val(),
@@ -51,8 +77,13 @@
 
         var data = JSON.stringify(LoginDetails);
         console.log(data);
-        var url = "/CreateAcc/signup";
+        var url = "/update/userdetails";
         AjaxPost(url, data);
+        alert('Your details are updated!!');
+        window.location.href = "/Login/index";
+
+
+
     }
 
     function validateLoginDetails(details) {
@@ -92,6 +123,7 @@
         return emailPattern.test(Email);
     }
 
+
     function displayValidationErrors(errors) {
         $('.error').text('');
 
@@ -99,6 +131,8 @@
             $('#' + error.field).text(error.message);
         });
     }
+
+
 
     function AjaxPost(url, data) {
         $.ajax({
@@ -108,20 +142,15 @@
             data: data,
             success: function (response) {
                 console.log("Data sent successfully");
-                if (response === "User already exists") {
-                    alert("User already exists. Please sign in.");
-                    window.location.href = "/Login/index";
-                } else if (response === "User inserted successfully.") {
-                    alert("Verification Sent to Your Email!!");
-                    window.location.href = "/Login/index";
-                } else {
-                    alert("Unexpected response: " + response);
-                }
+                // Show the OTP modal upon successful data submission
+                //var modal = document.getElementById("otpModal");
+                //modal.style.display = "flex";
             },
             error: function (error) {
                 console.error("Error in data submission", error);
-                alert("An error occurred. Please try again.");
+                // Handle the error accordingly
             }
         });
     }
+
 });

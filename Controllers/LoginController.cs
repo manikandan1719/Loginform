@@ -46,6 +46,7 @@ namespace EPMS1.Controllers
                             string status = reader["Status"].ToString();
 
                             if (status == "User exists") {
+                                Session["UserEmail"] = LoginDetails.useremail;
                                 result = new { success = true, message = "WELCOME USER!!" };
                             }
                             else {

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "homepage";
+}
+<html>
+<head>
+    <title>Homepage</title>
+    <style>
+        body {
+            background-image: url(../../Content/images/1900857.png);
+        }
+
+        .main {
+            background-color: silver;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 80%;
+            margin: 150px auto;
+            text-align: center;
+            display:flex;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+    <script src="~/Scripts/appjs/signup.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="~/Scripts/appjs/home.js"></script>
+</head>
+<body>
+    <div class="main">
+        <input type="hidden" id="userEmail" value="@ViewBag.Email" />
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="registrationData">
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

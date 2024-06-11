@@ -1,7 +1,10 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
+
     $(document).on('click', '#Btn', function () {
         Login();
     });
+    
 
     function Login() {
         var username = $('#firstName').val();
@@ -31,7 +34,7 @@
                 if (result.success) {
                     if (result.message == "WELCOME USER!!") {
                         alert(result.message);
-                        window.location.href = "https://github.com/manikandan1719"; 
+                        window.location.href = "/homepage/homepage"; 
                     } 
                     
                 } else if (result.message == "Account does not exist. Please register."){
@@ -96,4 +99,5 @@
     function create() {
         window.location.href = origin + "/CreateAcc/index";
     }
+    
 });

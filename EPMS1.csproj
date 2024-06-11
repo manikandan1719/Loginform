@@ -137,8 +137,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CreateAccController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\homepageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\OTPController.cs" />
+    <Compile Include="Controllers\updateController.cs" />
     <Compile Include="ex\Message.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -158,8 +159,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\appjs\home.js" />
     <Content Include="Scripts\appjs\loginform.js" />
     <Content Include="Scripts\appjs\signup.js" />
+    <Content Include="Scripts\appjs\update.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include=".editorconfig" />
@@ -199,7 +202,8 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\CreateAcc\Index.cshtml" />
     <Content Include="Views\Login\create.cshtml" />
-    <Content Include="Views\OTP\otpIndex.cshtml" />
+    <Content Include="Views\homepage\homepage.cshtml" />
+    <Content Include="Views\update\update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
